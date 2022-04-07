@@ -21,7 +21,7 @@ Future<dynamic> _handler(MethodCall methodCall) {
   return Future.value(true);
 }
 
-Future register({String schema,String corpId,String agentId}) async {
+Future register({String? schema,String? corpId,String? agentId}) async {
   return await _channel.invokeMethod('registerApp',{
     'schema':schema,
     'corpId':corpId,
@@ -33,7 +33,7 @@ Future isWeChatInstalled() async {
   return await _channel.invokeMethod("isWeChatInstalled");
 }
 
-Future sendAuth({String schema,String appId,String agentId,String state}) async {
+Future sendAuth({String? schema,String? appId,String? agentId,String? state}) async {
   if (state == null || state.length == 0){
     state = DateTime.now().millisecondsSinceEpoch.toString();
   }

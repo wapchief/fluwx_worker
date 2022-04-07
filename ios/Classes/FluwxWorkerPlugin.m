@@ -8,15 +8,15 @@
 @implementation FluwxWorkerPlugin
 
 BOOL isWWXRegistered = NO;
-FlutterMethodChannel *channel;
+FlutterMethodChannel *channels;
 
 + (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar>*)registrar {
   //FlutterMethodChannel* 
-  channel = [FlutterMethodChannel
+  channels = [FlutterMethodChannel
       methodChannelWithName:@"fluwx_worker"
             binaryMessenger:[registrar messenger]];
   FluwxWorkerPlugin* instance = [[FluwxWorkerPlugin alloc] init];
-  [registrar addMethodCallDelegate:instance channel:channel];
+  [registrar addMethodCallDelegate:instance channel:channels];
   [registrar addApplicationDelegate:instance];
 }
 
@@ -71,7 +71,7 @@ FlutterMethodChannel *channel;
                 @"code": [self nilToEmpty:authResp.code],
                 @"state": [self nilToEmpty:authResp.state]
         };
-        [channel invokeMethod:@"onAuthResponse" arguments:result];
+        [channels invokeMethod:@"onAuthResponse" arguments:result];
     }
 }
 

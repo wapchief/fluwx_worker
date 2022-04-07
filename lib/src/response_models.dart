@@ -1,8 +1,8 @@
 
 class WeChatWorkAuthResponse {
-  final int errCode;
-  final String code;
-  final String state;
+  final int? errCode;
+  final String? code;
+  final String? state;
 
   WeChatWorkAuthResponse.fromMap(Map map)
     : errCode = map['errCode'],
